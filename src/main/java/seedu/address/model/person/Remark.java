@@ -10,9 +10,8 @@ public class Remark {
     public final String value;
 
     /**
-     * Constructor for Remark.
-     *
-     * @param remark The remark.
+     * Constructor.
+     * @param remark is remark.
      */
     public Remark(String remark) {
         requireNonNull(remark);

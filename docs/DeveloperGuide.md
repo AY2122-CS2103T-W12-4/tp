@@ -279,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | potential user exploring the app           | view those taking similar mods | easily find potential groupmates                                       |
 | `* * *`  | user                                       | list the modules I am taking   | allow other users to view me as a potential groupmate                  |
 | `* *`    | user who formed a group                    | update group status for my modules | let other users know I have a group for a module                   |
-| `* *`    | proficient user                            | filter profiles by mods        | save time browsing profiles                                            |
+| `* *`    | proficient user                            | filter profiles by tags        | save time browsing profiles                                            |
 | `* *`    | proficient user                            | filter profiles by module      | save time browsing profiles                                            |
 | `* *`    | long time user                             | update the modules I am taking | find new favourites and groupmates for new modules that I am taking    |
 | `*`    | user searching for groupmates              | view potential groupmates' github| browse their work to decide if we would work well together           |
@@ -406,7 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC8 - Filter profiles by mods**
+**Use case: UC8 - Filter profiles by tags**
 
 **MSS**
 

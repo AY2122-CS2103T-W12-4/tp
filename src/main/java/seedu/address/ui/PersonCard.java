@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Status;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -42,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane mods;
+    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,23 +55,9 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getMods().stream()
-                .sorted(Comparator.comparing(mod -> mod.modName))
-                .forEach(mod -> {
-                    if (mod.status.equals(Status.NONE)) {
-                        mods.getChildren().add(new Label(mod.modName));
-                    } else if (mod.status.equals(Status.NEED_GROUP)) {
-                        Label l = new Label(mod.modName);
-                        l.setStyle("-fx-background-color: red;");
-                        mods.getChildren().add(l);
-                    } else if (mod.status.equals(Status.NEED_MEMBER)) {
-                        Label l = new Label(mod.modName);
-                        l.setStyle("-fx-background-color: yellow; -fx-text-fill: black;");
-                        mods.getChildren().add(l);
-                    } else {
-                        mods.getChildren().add(new Label(mod.modName));
-                    }
-                });
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

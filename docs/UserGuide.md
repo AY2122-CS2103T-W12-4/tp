@@ -66,9 +66,9 @@ ModuLink is a **desktop app for CS students to manage contacts, optimized for us
 
 </div>
 
-### Creating a profile with mods : `create`
+### Creating a profile with tags : `create`
 
-Creates your user profile. You can also choose to add mods to indicate your group availability.
+Creates your user profile. You can also choose to add tags to indicate your group availability.
 
 Format: `create n/NAME id/STUDENT_ID p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 

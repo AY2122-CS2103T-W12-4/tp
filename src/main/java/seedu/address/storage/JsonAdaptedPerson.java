@@ -15,8 +15,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Mod;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -30,22 +30,23 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> modules = new ArrayList<>();
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("modules") List<JsonAdaptedTag> modules) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
+                         @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                         @JsonProperty("address") String address,
+                         @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (modules != null) {
-            this.modules.addAll(modules);
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
         }
     }
 
@@ -58,7 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        modules.addAll(source.getMods().stream()
+        tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -69,9 +70,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Mod> personMods = new ArrayList<>();
-        for (JsonAdaptedTag tag : modules) {
-            personMods.add(tag.toModelType());
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -115,8 +116,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Mod> modelMods = new HashSet<>(personMods);
-        return new Person(modelName, modelId, modelPhone, modelEmail, modelAddress, modelMods);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Person(modelName, modelId, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

@@ -8,8 +8,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Mod;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,7 +28,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Mod> mods;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,7 +39,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        mods = new HashSet<>();
+        tags = new HashSet<>();
     }
 
     /**
@@ -51,7 +51,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        mods = new HashSet<>(personToCopy.getMods());
+        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -71,10 +71,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code mods} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... mods) {
-        this.mods = SampleDataUtil.getTagSet(mods);
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -103,7 +103,6 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, id, phone, email, address, mods);
         return new Person(name, id, phone, email, address, tags);
     }
 
